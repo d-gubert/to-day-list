@@ -9,9 +9,9 @@ TaskList = React.createClass({
 
 	render() {
 		return (
-			<div id="TaskList" className="highlight container box z-depth-3">
+			<div id="TaskList" className="container box z-depth-3">
 				<ul className="collection">
-					{this.data.tasks.map((task) => {return <TaskItem key={task._id} task={task} />})}
+					{this.data.tasks.map((task) => <TaskItem key={task._id} task={task} />)}
 				</ul>
 			</div>
 		)

@@ -49,3 +49,4 @@ Template.AddTaskModal.events
 		instance.$('#AddTaskModal').closeModal()
 		form.reset()
 
+Template.AddTaskModal.onCreated -> Template.addGetInstanceMethod()
