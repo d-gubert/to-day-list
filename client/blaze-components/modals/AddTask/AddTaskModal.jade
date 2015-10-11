@@ -1,0 +1,13 @@
+template(name="AddTaskModal")
+	#AddTaskModal.modal.bottom-sheet
+		.modal-content
+			h6 Add Task
+			hr.clearfix
+			.row
+				form.col.s8
+					.input-field
+						input(name="title", type="text", id="task-title", autofocus)
+						label(for="task-title", data-error="Title must not be empty!") Title
+		.modal-footer
+			a(href="#!").cancel.modal-action.modal-close.btn-flat Cancel
+			a(href="#!").save.modal-action.waves-effect.waves-green.btn-flat Save

@@ -1,0 +1,30 @@
+#TaskList {
+	.cursor-pointer {
+		cursor: pointer;
+	}
+	.task-item:hover{
+		background-color: #ddd;
+	}
+	&.highlight * {
+		-webkit-transition: background-color .25s ease;
+		-moz-transition: background-color .25s ease;
+		-o-transition: background-color .25s ease;
+		-ms-transition: background-color .25s ease;
+		transition: background-color .25s ease;
+	}
+	&.highlight *:hover {
+		background-color: #f2f2f2;
+	}
+}
+
+#AddTaskModal {
+	form {
+		padding-left: 35px;
+		label {
+			width: 180px;
+		}
+	}
+	hr {
+		margin-bottom: 35px;
+	}
+}
