@@ -1,10 +1,14 @@
 #TaskList {
 	.task-item {
 		cursor: pointer;
-		transition: background-color .25s ease;
-	}
-	.task-item:hover {
-		background-color: #f2f2f2;
+		min-height: 65px;
+
+		transition: background-color 0.25s ease;
+
+		.task-title {
+			font-size: 26px;
+			margin-top: 8px;
+		}
 	}
 }
 
