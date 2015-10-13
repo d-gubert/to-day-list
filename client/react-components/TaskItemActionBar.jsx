@@ -3,6 +3,7 @@ TaskItemActionBar = React.createClass({
 	statusBackgroundColorMap: {},
 
 	doneIconClickHandler() {
+		event.target.dataset.status
 		if (this.props.status !== TASK_STATUS.DONE)
 			Meteor.call('markTaskAsDone', this.props.taskID)
 	},
@@ -19,12 +20,15 @@ TaskItemActionBar = React.createClass({
 	render() {
 		const frontIconClasses = "fa circle " + this.statusIconMap[this.props.status];
 
-		let backIconClasses = "fa circle "
+		let backIconClasses = "fa circle ", backIconStatus = ''
 
-		if (this.props.status === TASK_STATUS.DONE)
-			backIconClasses += this.statusIconMap[TASK_STATUS.NEW]
-		else
-			backIconClasses += this.statusIconMap[TASK_STATUS.DONE]
+		if (this.props.status === TASK_STATUS.DONE) {
+			backIconClasses += this.statusIconMap[TASK_STATUS.NEW];
+			backIconStatus = TASK_STATUS.NEW;
+		} else {
+			backIconClasses += this.statusIconMap[TASK_STATUS.DONE];
+			backIconStatus = TASK_STATUS.DONE;
+		}
 
 		return (
 			<div className="flip-container left circle">
@@ -33,7 +37,7 @@ TaskItemActionBar = React.createClass({
 						<i className={frontIconClasses} />
 					</div>
 					<div className="back">
-						<i className={backIconClasses} onClick={this.doneIconClickHandler} />
+						<i className={backIconClasses} data-status={backIconStatus} onClick={this.doneIconClickHandler} />
 					</div>
 				</div>
 			</div>

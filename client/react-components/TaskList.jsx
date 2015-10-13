@@ -7,11 +7,17 @@ TaskList = React.createClass({
 		}
 	},
 
+	componentDidUpdate() {
+		this.tooltipManager.attachMaterializeTooltip();
+	},
+
+	tooltipManager: new MaterializeTooltipManager(),
+
 	render() {
 		return (
 			<div id="TaskList" className="container box z-depth-3">
 				<ul className="collection">
-					{this.data.tasks.map((task) => <TaskItem key={task._id} task={task} />)}
+					{this.data.tasks.map((task) => <TaskItem tooltipManager={this.tooltipManager} key={task._id} task={task} />)}
 				</ul>
 			</div>
 		)
