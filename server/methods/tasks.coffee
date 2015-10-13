@@ -6,5 +6,5 @@ Meteor.methods
 			date_created: new Date
 			status: TASK_STATUS.NEW
 
-	markTaskAsDone: (taskID) ->
-		Task.update { _id: taskID }, { $set: status: TASK_STATUS.DONE }
+	changeTaskStatus: (taskID, status) ->
+		Task.update { _id: taskID }, { $set: status: status }

@@ -2,10 +2,8 @@ TaskItemActionBar = React.createClass({
 	statusIconMap: {},
 	statusBackgroundColorMap: {},
 
-	doneIconClickHandler() {
-		event.target.dataset.status
-		if (this.props.status !== TASK_STATUS.DONE)
-			Meteor.call('markTaskAsDone', this.props.taskID)
+	iconClickHandler() {
+		Meteor.call('changeTaskStatus', this.props.taskID, event.target.dataset.status);
 	},
 
 	componentWillMount() {
@@ -37,7 +35,7 @@ TaskItemActionBar = React.createClass({
 						<i className={frontIconClasses} />
 					</div>
 					<div className="back">
-						<i className={backIconClasses} data-status={backIconStatus} onClick={this.doneIconClickHandler} />
+						<i className={backIconClasses} data-status={backIconStatus} onClick={this.iconClickHandler} />
 					</div>
 				</div>
 			</div>
