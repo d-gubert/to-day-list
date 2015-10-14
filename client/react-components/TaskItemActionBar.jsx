@@ -1,24 +1,16 @@
 TaskItemActionBar = React.createClass({
 	iconClickHandler() {
-		// const flipper = React.findDOMNode(this.refs.flipper);
+		Meteor.call('changeTaskStatus', this.props.taskID, event.target.dataset.status, (error) => {
+			if (error) return;
 
-		// flipper.classList.add('stop');
-		// flipper.addEventListener('mouseleave', function removeStopClass() {
-		// 	flipper.classList.remove('stop');
-		// 	flipper.removeEventListener('mouseleave', removeStopClass);
-		// });
+			const flipper = React.findDOMNode(this.refs.flipper);
 
-		Meteor.call('changeTaskStatus', this.props.taskID, event.target.dataset.status);
-	},
-
-	componentWillUpdate() {
-		const flipper = $(React.findDOMNode(this.refs.flipper));
-
-		console.log(flipper.is(':hover'))
-
-		if (flipper.is(':hover')) {
-			flipper.addClass('stop').one('mouseleave', () => flipper.removeClass('stop'));
-		}
+			flipper.classList.add('stop');
+			flipper.addEventListener('mouseleave', function removeStopClass() {
+				flipper.classList.remove('stop');
+				flipper.removeEventListener('mouseleave', removeStopClass);
+			});
+		});
 	},
 
 	render() {
