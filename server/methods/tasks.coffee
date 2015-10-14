@@ -7,4 +7,11 @@ Meteor.methods
 			status: TASK_STATUS.NEW
 
 	changeTaskStatus: (taskID, status) ->
-		Task.update { _id: taskID }, { $set: status: status }
+		Task.update _id: taskID ,
+			$set:
+				status: status
+				last_updated: new Date
+			$push:
+				statusHistory:
+					status: status
+					date: new Date

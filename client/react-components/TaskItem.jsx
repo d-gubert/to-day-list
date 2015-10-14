@@ -1,16 +1,19 @@
 TaskItem = React.createClass({
+	statics: {
+		statusIconMap: {
+			[TASK_STATUS.NEW]: 'fa-sun-o yellow',
+			[TASK_STATUS.DONE]: 'fa-check green'
+		},
+
+		statusBackgroundColorMap: {
+			[TASK_STATUS.NEW]: 'yellow lighten-4',
+			[TASK_STATUS.DONE]: 'green lighten-4'
+		},
+	},
+
 	propTypes: {
 		task: React.PropTypes.object.isRequired,
 		tooltipManager: React.PropTypes.instanceOf(MaterializeTooltipManager).isRequired
-	},
-
-	statusBackgroundColorMap: {},
-
-	componentWillMount() {
-		this.statusBackgroundColorMap = {
-			[TASK_STATUS.NEW]: 'yellow lighten-4',
-			[TASK_STATUS.DONE]: 'green lighten-4'
-		}
 	},
 
 	componentDidMount() {
@@ -24,7 +27,7 @@ TaskItem = React.createClass({
 	render() {
 		const taskItemClasses = "task-item collection-item avatar cursor-pointer " +
 								this.props.task.status + " " +
-								this.statusBackgroundColorMap[this.props.task.status]
+								TaskItem.statusBackgroundColorMap[this.props.task.status]
 		return (
 			<li className={taskItemClasses}>
 				<TaskItemActionBar status={this.props.task.status} taskID={this.props.task._id}/>
