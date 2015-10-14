@@ -1,8 +1,13 @@
 TaskItemActionBar = React.createClass({
 	iconClickHandler() {
 		Meteor.call('changeTaskStatus', this.props.taskID, event.target.dataset.status, (error) => {
-			if (error) return;
+			if (error) {
+				console.error(error);
+				return;
+			}
 
+			// Code below is needed so the status icon doesn't flip to another
+			// status right after the user updates it
 			const flipper = React.findDOMNode(this.refs.flipper);
 
 			flipper.classList.add('stop');
