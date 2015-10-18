@@ -1,15 +1,46 @@
 #TaskList {
 	.task-item {
-		cursor: pointer;
+		position: relative;
 		min-height: 65px;
+		cursor: pointer;
 
 		transition: background-color 0.25s ease;
 
+		.status-icon {
+			transition: 0.35s;
+			margin-left: 15px;
+			left: 0px;
+			top: 10px;
+		}
+
 		.task-title {
-			font-size: 26px;
 			margin-top: 8px;
-			width: 95%;
+			font-size: 26px;
 			height: 47px;
+			width: 95%;
+		}
+
+		.action-bar {
+			background-color: rgba(255,255,255,0.85);
+			min-height: 65px;
+			position: absolute;
+			width: 0;
+			left: 0;
+			top: 0;
+
+			transition: width 0.5s;
+
+			&.action-bar-hover {
+				width: 100%;
+
+				> i {
+					display: block;
+				}
+			}
+
+			> i {
+				display: none;
+			}
 		}
 	}
 }

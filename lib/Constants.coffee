@@ -1,3 +1,7 @@
 @TASK_STATUS =
-	DONE: 'done'
-	NEW: 'new'
+	NEW:     'new'
+	DONE:    'done'
+	WONT:    'wont'
+	WAIT:    'wait'
+	HIDE:    'hide'
+	DELETED: 'deleted'

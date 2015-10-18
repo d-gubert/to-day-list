@@ -2,12 +2,16 @@ TaskItem = React.createClass({
 	statics: {
 		statusIconMap: {
 			[TASK_STATUS.NEW]: 'fa-sun-o yellow',
-			[TASK_STATUS.DONE]: 'fa-check green'
+			[TASK_STATUS.DONE]: 'fa-check green',
+			[TASK_STATUS.WONT]: 'fa-thumbs-o-down grey',
+			[TASK_STATUS.WAIT]: 'fa-clock-o blue'
 		},
 
 		statusBackgroundColorMap: {
 			[TASK_STATUS.NEW]: 'yellow lighten-4',
-			[TASK_STATUS.DONE]: 'green lighten-4'
+			[TASK_STATUS.DONE]: 'green lighten-4',
+			[TASK_STATUS.WONT]: 'grey lighten-4',
+			[TASK_STATUS.WAIT]: 'blue lighten-4'
 		},
 	},
 
@@ -30,7 +34,7 @@ TaskItem = React.createClass({
 								TaskItem.statusBackgroundColorMap[this.props.task.status]
 		return (
 			<li className={taskItemClasses}>
-				<TaskItemActionBar status={this.props.task.status} taskID={this.props.task._id}/>
+				<TaskItemStatusesBar task_status={this.props.task.status} task_id={this.props.task._id} />
 				<div ref="taskTitle" className="large left truncate task-title" data-tooltip={this.props.task.title}>
 					{this.props.task.title}
 				</div>

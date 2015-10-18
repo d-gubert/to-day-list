@@ -1,2 +1,2 @@
 Meteor.publish 'tasks', ->
-	return Task.find();
+	return Task.find()
