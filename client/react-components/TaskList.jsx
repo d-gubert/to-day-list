@@ -11,6 +11,10 @@ TaskList = React.createClass({
 		this.tooltipManager.attachMaterializeTooltip();
 	},
 
+	componentWillUnmount() {
+		this.tooltipManager.detachMaterializeTooltip();
+	},
+
 	tooltipManager: new MaterializeTooltipManager(),
 
 	render() {

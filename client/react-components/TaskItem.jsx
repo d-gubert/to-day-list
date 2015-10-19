@@ -3,6 +3,7 @@ TaskItem = React.createClass({
 		statusIconMap: {
 			[TASK_STATUS.NEW]: 'fa-sun-o yellow',
 			[TASK_STATUS.DONE]: 'fa-check green',
+			[TASK_STATUS.PROGRESS]: 'fa-hourglass-half orange',
 			[TASK_STATUS.WONT]: 'fa-thumbs-o-down grey',
 			[TASK_STATUS.WAIT]: 'fa-clock-o blue'
 		},
@@ -10,7 +11,8 @@ TaskItem = React.createClass({
 		statusBackgroundColorMap: {
 			[TASK_STATUS.NEW]: 'yellow lighten-4',
 			[TASK_STATUS.DONE]: 'green lighten-4',
-			[TASK_STATUS.WONT]: 'grey lighten-4',
+			[TASK_STATUS.PROGRESS]: 'orange lighten-4',
+			[TASK_STATUS.WONT]: 'grey lighten-2',
 			[TASK_STATUS.WAIT]: 'blue lighten-4'
 		},
 	},

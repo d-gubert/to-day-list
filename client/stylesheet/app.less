@@ -28,18 +28,23 @@
 			left: 0;
 			top: 0;
 
-			transition: width 0.5s;
+			transition: width 0.25s;
 
 			&.action-bar-hover {
 				width: 100%;
 
 				> i {
-					display: block;
+					position: relative;
+					margin-left: 30px;
+					&:first-of-type {
+						margin-left: 100px;
+					}
 				}
 			}
 
 			> i {
-				display: none;
+				display: block;
+				margin-left: -100px;
 			}
 		}
 	}

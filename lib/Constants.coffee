@@ -5,3 +5,4 @@
 	WAIT:    'wait'
 	HIDE:    'hide'
 	DELETED: 'deleted'
+	PROGRESS: 'progress'

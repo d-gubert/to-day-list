@@ -11,21 +11,21 @@ TaskItemStatusesBar = React.createClass({
 	},
 
 	handleStatusClick() {
+		if (event.target.dataset.status === this.props.task_id) return;
+
 		Meteor.call('changeTaskStatus', this.props.task_id, event.target.dataset.status, (error) => {
 			if (error) {
 				console.error(error);
 				return;
 			}
 
-			// Code below is needed so the status icon doesn't flip to another
-			// status right after the user updates it
-			this.preventIconFlipUntilMouseLeave();
+			this.getActionBar().classList.remove('action-bar-hover');
+
+			//this.preventIconFlipUntilMouseLeave();
 		});
 	},
 
 	preventIconFlipUntilMouseLeave() {
-		console.log(this.flipIconInstance);
-
 		if (!this.flipIconInstance.refs || !this.flipIconInstance.refs.flipper) return;
 
 		const flipper = React.findDOMNode(this.flipIconInstance.refs.flipper);
@@ -45,7 +45,7 @@ TaskItemStatusesBar = React.createClass({
 
 		for (let status in TaskItem.statusIconMap) {
 			if ((this.props.task_status === TASK_STATUS.DONE && status === TASK_STATUS.NEW) ||
-				 status === TASK_STATUS.DONE || status === this.props.task_status) {
+			     status === TASK_STATUS.DONE || status === this.props.task_status) {
 				continue;
 			}
 
@@ -53,9 +53,7 @@ TaskItemStatusesBar = React.createClass({
 				<i key={this.props.task_id + status}
 				   onClick={this.handleStatusClick}
 				   className={classes + TaskItem.statusIconMap[status]}
-				   data-status={status}
-				   data-left={(left+=40) + 'px'}
-				   style={{left: (left+=40) + 'px'}} />
+				   data-status={status} />
 			)
 		}
 
