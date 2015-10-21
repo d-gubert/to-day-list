@@ -19,14 +19,15 @@ TaskItem = React.createClass({
 
 	propTypes: {
 		task: React.PropTypes.object.isRequired,
-		tooltipManager: React.PropTypes.instanceOf(MaterializeTooltipManager).isRequired
+		tooltipInitializer: React.PropTypes.instanceOf(PluginInitializer).isRequired,
+		taskItemMenuInitializer: React.PropTypes.instanceOf(PluginInitializer).isRequired,
 	},
 
 	componentDidMount() {
 		const taskTitleEl = React.findDOMNode(this.refs.taskTitle);
 
 		if (taskTitleEl.scrollWidth > taskTitleEl.clientWidth) {
-			this.props.tooltipManager.addElement(taskTitleEl);
+			this.props.tooltipInitializer.addElement(taskTitleEl);
 		}
 	},
 
@@ -40,7 +41,7 @@ TaskItem = React.createClass({
 				<div ref="taskTitle" className="large left truncate task-title" data-tooltip={this.props.task.title}>
 					{this.props.task.title}
 				</div>
-				<a href="#!" className="secondary-content"><i className="fa fa-send" /></a>
+				<TaskItemMenu task={this.props.task} taskItemMenuInitializer={this.props.taskItemMenuInitializer} />
 			</li>
 		)
 	}

@@ -1,13 +1,17 @@
 Meteor.methods
 	addTask: (formData) ->
-		#Add Validation
+		check formData.title, String
+
 		Task.insert
 			title: formData.title
 			date_created: new Date
 			status: TASK_STATUS.NEW
 
 	changeTaskStatus: (taskID, status) ->
-		Task.update _id: taskID ,
+		check taskID, String
+		check status, String
+
+		Task.update _id: taskID,
 			$set:
 				status: status
 				last_updated: new Date
@@ -15,3 +19,6 @@ Meteor.methods
 				statusHistory:
 					status: status
 					date: new Date
+
+	deleteTask: (taskID) ->
+		Meteor.call 'changeTaskStatus', taskID, TASK_STATUS.DELETED

@@ -2,7 +2,8 @@ TaskItemFlipIcon = React.createClass({
 	propTypes: {
 		status: React.PropTypes.string.isRequired,
 		task_id: React.PropTypes.string.isRequired,
-		getActionBar: React.PropTypes.func.isRequired
+		getActionBar: React.PropTypes.func.isRequired,
+		handleStatusClick: React.PropTypes.func.isRequired
 	},
 
 	handleMouseEnter() {

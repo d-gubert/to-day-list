@@ -8,20 +8,39 @@ TaskList = React.createClass({
 	},
 
 	componentDidUpdate() {
-		this.tooltipManager.attachMaterializeTooltip();
+		this.tooltipInitializer.runAttacher();
+		this.taskItemMenuInitializer.runAttacher();
 	},
 
 	componentWillUnmount() {
-		this.tooltipManager.detachMaterializeTooltip();
+		this.tooltipInitializer.runDetacher();
+		this.taskItemMenuInitializer.runDetacher();
 	},
 
-	tooltipManager: new MaterializeTooltipManager(),
+	tooltipInitializer: new PluginInitializer(
+		(elements) => { $(elements).tooltip({delay: 25}) },
+		(elements) => { $(elements).tooltip('remove') }
+	),
+
+	taskItemMenuInitializer: new PluginInitializer(
+		(elements) => $(elements).dropdown({
+			hover: false,
+			constrain_width: false
+		})
+	),
 
 	render() {
 		return (
 			<div id="TaskList" className="container box z-depth-3">
 				<ul className="collection">
-					{this.data.tasks.map((task) => <TaskItem tooltipManager={this.tooltipManager} key={task._id} task={task} />)}
+					{
+						this.data.tasks.map((task) =>
+							<TaskItem
+								key={task._id}
+								task={task}
+								tooltipInitializer={this.tooltipInitializer}
+								taskItemMenuInitializer={this.taskItemMenuInitializer} />
+					)}
 				</ul>
 			</div>
 		)
