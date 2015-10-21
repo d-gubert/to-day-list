@@ -3,7 +3,7 @@ TaskList = React.createClass({
 
 	getMeteorData() {
 		return {
-			tasks: Task.find().fetch()
+			tasks: Task.find({}, {sort: {date_created: 1}}).fetch()
 		}
 	},
 
