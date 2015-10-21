@@ -33,8 +33,8 @@ TaskItem = React.createClass({
 
 	render() {
 		const taskItemClasses = "task-item collection-item avatar cursor-pointer " +
-								this.props.task.status + " " +
-								TaskItem.statusBackgroundColorMap[this.props.task.status]
+		                        this.props.task.status + " " +
+		                        TaskItem.statusBackgroundColorMap[this.props.task.status]
 		return (
 			<li className={taskItemClasses}>
 				<TaskItemStatusesBar task_status={this.props.task.status} task_id={this.props.task._id} />
