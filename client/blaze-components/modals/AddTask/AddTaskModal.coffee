@@ -31,20 +31,22 @@ Template.AddTaskModal.events
 			instance.$('#task-title').removeClass 'invalid'
 
 		instance.$('.modal-footer a')
-					.addClass('disabled')
-					.removeClass('modal-close')
-					.filter('.save')
-					.html spinnerHTML
+			.addClass('disabled')
+			.removeClass('modal-close')
+			.filter('.save')
+			.html spinnerHTML
 
 		Meteor.call 'addTask', formData
 
+		Session.set 'taskLimit', Session.get('taskLimit') + 1
+
 		instance.$('.modal-footer a')
-					.removeClass('disabled')
-					.filter('.save')
-					.html('Save')
-					.end()
-					.filter('.cancel')
-					.addClass('modal-close')
+			.removeClass('disabled')
+			.filter('.save')
+			.html('Save')
+			.end()
+			.filter('.cancel')
+			.addClass('modal-close')
 
 		instance.$('#AddTaskModal').closeModal()
 		form.reset()

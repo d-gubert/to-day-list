@@ -1,2 +1,5 @@
 Meteor.startup ->
-	Meteor.subscribe 'tasks'
+	Session.setDefault 'taskLimit', 5
+
+	Tracker.autorun ->
+		Meteor.subscribe 'tasks', Session.get 'taskLimit'

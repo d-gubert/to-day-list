@@ -1,5 +1,12 @@
-Meteor.publish 'tasks', ->
+Meteor.publish 'tasks', (limit) ->
+	check limit, Number
+
+	Counts.publish this, 'totalTasks', Task.find(status: $ne: TASK_STATUS.DELETED), noReady: true
+
 	return Task.find status: $ne: TASK_STATUS.DELETED,
+		limit: limit
+		sort:
+			date_created: -1
 		fields:
 			statusHistory: 0
 

@@ -3,7 +3,7 @@ TaskList = React.createClass({
 
 	getMeteorData() {
 		return {
-			tasks: Task.find({}, {sort: {date_created: 1}}).fetch()
+			tasks: Task.find({}, {sort: {date_created: -1}}).fetch()
 		}
 	},
 
@@ -33,14 +33,14 @@ TaskList = React.createClass({
 		return (
 			<div id="TaskList" className="container box z-depth-3">
 				<ul className="collection">
-					{
-						this.data.tasks.map((task) =>
-							<TaskItem
-								key={task._id}
-								task={task}
-								tooltipInitializer={this.tooltipInitializer}
-								taskItemMenuInitializer={this.taskItemMenuInitializer} />
+					{this.data.tasks.map((task) =>
+						<TaskItem
+							key={task._id}
+							task={task}
+							tooltipInitializer={this.tooltipInitializer}
+							taskItemMenuInitializer={this.taskItemMenuInitializer} />
 					)}
+					<TaskListLoadMore />
 				</ul>
 			</div>
 		)

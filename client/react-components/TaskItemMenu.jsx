@@ -5,6 +5,8 @@ TaskItemMenu = React.createClass({
 	},
 
 	handlerDeleteTask() {
+		event.preventDefault();
+
 		swal({
 			title: "Are you sure?",
 			text: "This task won't be available anymore!",

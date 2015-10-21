@@ -7,6 +7,7 @@ TaskItemFlipIcon = React.createClass({
 	},
 
 	handleMouseEnter() {
+		$('.action-bar-hover').removeClass('action-bar-hover');
 		this.props.getActionBar().classList.add('action-bar-hover');
 	},
 
